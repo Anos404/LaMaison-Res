@@ -1,0 +1,6 @@
+{
+  "name": "La Maison Menu",
+  "description": "An immersive, premium 3D-animated dining menu for La Maison Restaurant built with cinematic interactive transitions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

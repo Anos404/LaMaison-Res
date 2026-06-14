@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Lato", "Helvetica Neue", Arial, sans-serif;
+  
+  --color-brand-brown: #8b4513;
+  --color-brand-gold: #d4af37;
+  --color-brand-cream: #faf7f2;
+  --color-brand-warm-white: #fff8f0;
+  --color-brand-dark: #2b2b2b;
+  --color-brand-text-muted: #666666;
+  --color-brand-blue-accent: #05034a;
+}
+
+/* Base resets & luxury custom styling */
+html {
+  scroll-behavior: smooth;
+  background-color: #faf7f2;
+  color: #2b2b2b;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Elegant background pattern mimicking soft Parisian paper/ linen */
+.brand-bg-pattern {
+  background-color: #faf7f2;
+  background-image: 
+    radial-gradient(circle at 100% 150%, #faf7f2 24%, #f6f1e9 25%, #f6f1e9 28%, #faf7f2 29%, #faf7f2 36%, #edf5e1 36%, #edf5e1 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0% 150%, #faf7f2 24%, #f6f1e9 25%, #f6f1e9 28%, #faf7f2 29%, #faf7f2 36%, #edf5e1 36%, #edf5e1 40%, transparent 40%, transparent),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.45) 0%, rgba(250, 247, 242, 0.2) 100%);
+  background-attachment: fixed;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #faf7f2;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b4513;
+}
+
+/* Keyframes for CSS entrance reveals */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeAndRise {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInSimple {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: perspective(800px) rotateX(15deg) translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(800px) rotateX(0) translateY(0);
+  }
+}
+
+@keyframes itemSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes ambientPulse {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.05);
+  }
+}
+
+/* Live animated classes for elements */
+.animate-navbar {
+  animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-hero-title {
+  animation: fadeAndRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-hero-subtitle {
+  animation: fadeInSimple 1s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-hero-intro {
+  animation: fadeInSimple 1.2s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+/* Ornamental fleur-de-lis elements & lines */
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37 50%, transparent);
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.divider-active .divider-line {
+  width: 40%;
+}
+
+/* Chef Badge shimmer flow class */
+.chef-badge-shimmer {
+  background: linear-gradient(90deg, #d4af37 25%, #f5e08a 50%, #d4af37 75%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* 3D Glass Morph Card Base */
+.custom-perspective-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Inner reflections on premium cards */
+.gloss-reflection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.custom-perspective-card:hover .gloss-reflection {
+  opacity: 1;
+}
+
+/* List Item Item Entrance Animation trigger classes */
+.menu-item-reveal {
+  opacity: 0;
+  transform: translateX(-12px);
+}
+
+.menu-item-animate {
+  animation: itemSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Supports reduced motion access mode */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+    perspective: none !important;
+  }
+  .chef-badge-shimmer {
+    background: #d4af37 !important;
+    animation: none !important;
+  }
+  .divider-line {
+    width: 40% !important;
+  }
+}
