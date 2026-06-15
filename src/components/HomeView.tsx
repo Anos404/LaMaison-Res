@@ -10,6 +10,7 @@ interface HomeViewProps {
 const HomeView = memo(function HomeView({ setActiveTab }: HomeViewProps) {
   const handleMenuClick = useCallback(() => setActiveTab('menu'), [setActiveTab]);
   const handleContactClick = useCallback(() => setActiveTab('contact'), [setActiveTab]);
+  return (
     <div className="space-y-16">
       {/* Cinematic Hero Box */}
       <section className="relative rounded-3xl overflow-hidden h-[540px] flex items-center justify-center p-8 bg-brand-dark shadow-2xl">
